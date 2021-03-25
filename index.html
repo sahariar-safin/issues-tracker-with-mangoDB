@@ -46,7 +46,7 @@
 
     <script>
         const loadIssues = () => {
-            fetch('/getToDo')
+            fetch('http://localhost:3000/getToDo')
                 .then(res => res.json())
                 .then(data => {
                     document.getElementById('closed-issues').innerHTML = data.filter(issue => issue.issuesStatus == "Closed").length;
@@ -92,7 +92,7 @@
         loadIssues();
 
         const handleClose = (id) => {
-            fetch(`/close/${ id }`, {
+            fetch(`http://localhost:3000/close/${ id }`, {
                 method: 'PATCH',
                 headers: {
                     "Content-Type": "application/json"
@@ -105,7 +105,7 @@
         }
 
         const handleDelete = (id) => {
-            fetch(`/delete/${ id }`, {
+            fetch(`http://localhost:3000/delete/${ id }`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json"
