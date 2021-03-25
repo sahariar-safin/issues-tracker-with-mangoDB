@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 client.connect(err => {
     const collection = client.db("to-do").collection("list");
 
-    app.post("http://localhost:3000/addToDo", (req, res) => {
+    app.post("/addToDo", (req, res) => {
         const todo = req.body;
         const issuesStatus = 'Open';
         const issuesID = (Math.random() * 1000000).toFixed(0)
@@ -25,14 +25,14 @@ client.connect(err => {
         res.redirect('/')
     })
 
-    app.get('http://localhost:3000/getToDo', (req, res) => {
+    app.get('/getToDo', (req, res) => {
         collection.find({})
             .toArray((err, collection) => {
                 res.send(collection);
             })
     })
 
-    app.patch('http://localhost:3000/close/:id', (req, res) => {
+    app.patch('/close/:id', (req, res) => {
         collection.updateOne(
             { issuesID: req.params.id },
             { $set: { issuesStatus: 'Closed' } }
@@ -43,7 +43,7 @@ client.connect(err => {
         res.redirect('/')
     })
 
-    app.delete('http://localhost:3000/delete/:id', (req, res) => {
+    app.delete('/delete/:id', (req, res) => {
         collection.deleteOne({
             issuesID: req.params.id
         })
