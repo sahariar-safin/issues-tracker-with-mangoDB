@@ -20,7 +20,7 @@ client.connect(err => {
     app.post("/addToDo", (req, res) => {
         const todo = req.body;
         const issuesStatus = 'Open';
-        const issuesID = (Math.random() * 1000000).toFixed(0)
+        const issuesID = (Math.random() * 1000000).toFixed(0);
         collection.insertOne({ issuesID, issuesStatus, ...todo });
         res.redirect('/')
     })
